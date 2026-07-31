@@ -16,3 +16,42 @@ Finally, I ran a 500-trial Monte Carlo analysis with all three components drawn 
 The result showed an asymmetry worth designing around: steady-state output stayed tightly clustered because it depends only on capacitance,
 while settling time varied considerably more because it depends on all three parameters through the characteristic roots. 
 For an application where transient timing matters, component selection is more critical than the steady-state figure suggests.
+
+Code down here 
+L_nom = 1; R_nom = 3; C_nom = 0.5;
+N = 500;
+tol = 0.05;
+
+settle = zeros(N,1);
+final  = zeros(N,1);
+
+figure; hold on;
+
+for k = 1:N
+    L = L_nom * (1 + tol*(2*rand-1));
+    R = R_nom * (1 + tol*(2*rand-1));
+    C = C_nom * (1 + tol*(2*rand-1));
+
+    out = sim('practice1');
+    q = out.simout.Data;
+    t = out.simout.Time;
+
+    if k <= 50
+        plot(t, q, 'Color', [0.5 0.5 0.5 0.15]);
+    end
+
+    info = stepinfo(q, t);
+    settle(k) = info.SettlingTime;
+    final(k)  = q(end);
+end
+
+xlabel('Time (s)'); ylabel('Charge (C)');
+title('Monte Carlo: 5% component tolerance');
+
+figure;
+histogram(settle, 30);
+xlabel('Settling time (s)'); ylabel('Count');
+
+fprintf('Settling time: mean %.3f s, std %.3f s\n', mean(settle), std(settle));
+fprintf('Range: %.3f to %.3f s\n', min(settle), max(settle));
+fprintf('Final charge: mean %.3f, std %.4f\n', mean(final), std(final));
