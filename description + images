@@ -17,7 +17,13 @@ The result showed an asymmetry worth designing around: steady-state output staye
 while settling time varied considerably more because it depends on all three parameters through the characteristic roots. 
 For an application where transient timing matters, component selection is more critical than the steady-state figure suggests.
 
-Code down here 
+
+
+
+//Code down here //
+
+
+
 L_nom = 1; R_nom = 3; C_nom = 0.5;
 N = 500;
 tol = 0.05;
