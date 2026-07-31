@@ -2,11 +2,7 @@ Second-order RLC model in Simulink, validated analytically, with Monte Carlo com
 
 
 
-<img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/6a33c496-5df1-4159-b437-5624aca63e3a" />
 
-<img width="500" height="500" alt="graph1" src="https://github.com/user-attachments/assets/afa47f16-183a-47e0-8486-a35a1bd61e98" />
-
-<img width="600" height="914" alt="graph2" src="https://github.com/user-attachments/assets/ff7bf145-6634-4f74-8502-4c3915ade824" />
 
 To verify the model rather than trusting it, I solved the same system analytically using Laplace transforms and compared results. 
 The closed-form solution predicts a steady-state charge of 5 C and a current peak of 2.5 A at t = ln(2) seconds; the simulation reproduced both, 
